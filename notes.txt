@@ -7,3 +7,21 @@
 - what is docker network?
 - how does a docker communicate with a database?
 - how does a docker communicate with a WordPress?
+
+
+
+
+====================MariaDB====================
+- upon installation, mariaDB creates mysql user
+- creating MariaDB folders
+    - mkdir -p /var/lib/mysql (for storing data)
+    - mkdir -p /run/mysqld (for communication)
+    - chown -R mysql:mysql /run/mysqld
+    - chown -R mysql:mysql /var/lib/mysql
+- initializing database
+    - mysql_install_db --user=mysql --datadir=/var/lib/mysql
+- copy scripts into container
+    - COPY conf/edit_server_config.sh .
+    - COPY conf/create_wordpress_db.sh .
+- start MariaDB daemon
+    - mysqld_safe --user=mysql
