@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS wordpress_db;
+CREATE DATABASE IF NOT EXISTS $;
 USE wordpress_db;
 
 CREATE TABLE example (

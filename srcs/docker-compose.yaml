@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:
+  mariadb:
+    build: requirements/mariadb/
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      WORDPRESS_DB: ${WORDPRESS_DB}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - wordpress_db:/var/lib/mysql/wordpress_db
+
+volumes:
+  wordpress_db:
