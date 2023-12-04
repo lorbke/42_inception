@@ -2,7 +2,9 @@
 - change volume device to /home/user/data
 - configure wordpress
 - setup mariadb database correctly with users and passwords
-
+- understand syntax of nginx.conf
+- add creation of certificates to makefile
+- use environment variables where possible
 
 
 
@@ -45,3 +47,8 @@
     - openssl x509 -req -days 9999 -in lorbke.42.fr.csr -signkey lorbke.42.fr.key -out lorbke.42.fr.crt (generates certificate from private key and signing request)
 - copy certificate and private key into container
 - copy nginx.conf into container
+
+===================General===================
+- my SSL cert is not issued by a trusted CA and therefore produces a warning in Chrome
+- nginx runs on user "nginx" by default
+- docker exec -it [container name] bash (can be used to go into container during runtime)

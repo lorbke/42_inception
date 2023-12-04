@@ -16,13 +16,15 @@ RUN apk add --no-cache \
     php8-ctype \
     php8-session \
     php8-mbstring \
-    curl \
-	bash
+    curl
 
 RUN curl -o wordpress.tar.gz -fSL "https://wordpress.org/latest.tar.gz" \
     && mkdir -p /var/www/html \
     && tar -xzf wordpress.tar.gz -C /var/www/html/ \
     && chown -R nobody:nobody /var/www/html/wordpress
+
+COPY conf/edit_wp_conf.sh .
+RUN sh edit_wp_conf.sh
 
 EXPOSE 9000
 
