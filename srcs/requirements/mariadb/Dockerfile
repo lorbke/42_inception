@@ -1,12 +1,12 @@
 FROM alpine:3.16
 
-RUN apk update && \
-	apk add mariadb mariadb-client bash && \
-	mkdir -p /var/lib/mysql && \
-	mkdir -p /run/mysqld && \
-	chown -R mysql:mysql /run/mysqld && \
-	chown -R mysql:mysql /var/lib/mysql && \
-	mysql_install_db --user=mysql --datadir=/var/lib/mysql
+RUN apk update \
+	&& apk add mariadb mariadb-client bash \
+	&& mkdir -p /var/lib/mysql \
+	&& mkdir -p /run/mysqld \
+	&& chown -R mysql:mysql /run/mysqld \
+	&& chown -R mysql:mysql /var/lib/mysql \
+	&& mysql_install_db --user=mysql --datadir=/var/lib/mysql
 
 COPY conf/edit_server_config.sh .
 RUN sh edit_server_config.sh

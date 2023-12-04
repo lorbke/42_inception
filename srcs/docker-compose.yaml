@@ -3,6 +3,7 @@ version: '3.1'
 services:
   mariadb:
     build: requirements/mariadb/
+    container_name: mariadb
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -14,5 +15,17 @@ services:
     volumes:
       - wordpress_db:/var/lib/mysql/wordpress_db
 
+  wordpress:
+    build: requirements/wordpress/
+    container_name: wordpress
+    depends_on:
+      - mariadb
+    restart: always
+    ports:
+      - "9000:9000"
+    volumes:
+      - wordpress:/var/www/
+
 volumes:
   wordpress_db:
+  wordpress:

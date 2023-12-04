@@ -1,12 +1,6 @@
 ====================To Do====================
-- what is docker compose?
-    - basically makefile for docker
-- how do dockers communicate with each other?
-- how do dockers communicate with the host?
-- what is NGINX?
-- what is docker network?
-- how does a docker communicate with a database?
-- how does a docker communicate with a WordPress?
+- change volume device to /home/user/data
+- configure wordpress
 
 
 
