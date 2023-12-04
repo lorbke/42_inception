@@ -1,6 +1,7 @@
 ====================To Do====================
 - change volume device to /home/user/data
 - configure wordpress
+- setup mariadb database correctly with users and passwords
 
 
 
@@ -19,3 +20,27 @@
     - COPY conf/create_wordpress_db.sh .
 - start MariaDB daemon
     - mysqld_safe --user=mysql
+
+====================Wordpress====================
+- add necessary php8 modules
+    - apk add php8-mysqli php8-xmlrpc php8-soap php8-gd php8-xml php8-intl php8-mbstring php8-xml php8-json php8-curl php8-openssl
+- add curl
+    - apk add curl
+- download wordpress
+    - curl -O https://wordpress.org/latest.tar.gz
+- create wordpress folder
+    - mkdir /var/www/wordpress
+- extract wordpress
+    - tar -xzf latest.tar.gz -C /var/www/wordpress
+- add permissions
+    - chown -R nginx:nginx /var/www/wordpress
+- start php-fpm
+    - php-fpm8 -F (F flag keeps it in foreground)
+
+====================Nginx====================
+- generate certificates
+    - openssl genrsa -out lorbke.42.fr.key 2048 (generate 2048 bit private key)
+    - openssl req -new -key lorbke.42.fr.key -out lorbke.42.fr.csr (generate certificate signing request)
+    - fill out shit
+    - openssl x509 -req -days 9999 -in lorbke.42.fr.csr -signkey lorbke.42.fr.key -out lorbke.42.fr.crt (generates certificate from private key and signing request)
+- 

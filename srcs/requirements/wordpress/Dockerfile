@@ -22,7 +22,6 @@ RUN apk add --no-cache \
 RUN curl -o wordpress.tar.gz -fSL "https://wordpress.org/latest.tar.gz" \
     && mkdir -p /var/www/html \
     && tar -xzf wordpress.tar.gz -C /var/www/html/ \
-    && rm wordpress.tar.gz \
     && chown -R nobody:nobody /var/www/html/wordpress
 
 EXPOSE 9000
