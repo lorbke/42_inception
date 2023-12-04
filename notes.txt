@@ -43,4 +43,5 @@
     - openssl req -new -key lorbke.42.fr.key -out lorbke.42.fr.csr (generate certificate signing request)
     - fill out shit
     - openssl x509 -req -days 9999 -in lorbke.42.fr.csr -signkey lorbke.42.fr.key -out lorbke.42.fr.crt (generates certificate from private key and signing request)
-- 
+- copy certificate and private key into container
+- copy nginx.conf into container
