@@ -21,7 +21,8 @@ RUN apk add --no-cache \
 RUN curl -o wordpress.tar.gz -fSL "https://wordpress.org/latest.tar.gz" \
     && mkdir -p /var/www/html \
     && tar -xzf wordpress.tar.gz -C /var/www/html/ \
-    && chown -R nobody:nobody /var/www/html/wordpress
+    && chown -R nobody:nobody /var/www/html/ \
+    && chmod -R 755 /var/www/html/
 
 COPY conf/edit_wp_conf.sh .
 RUN sh edit_wp_conf.sh
