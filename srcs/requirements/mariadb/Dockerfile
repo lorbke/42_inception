@@ -8,7 +8,7 @@ RUN apk update \
 	&& chown -R mysql:mysql /var/lib/mysql \
 	&& mysql_install_db --user=mysql --datadir=/var/lib/mysql
 
-COPY conf/edit_server_config.sh .
+COPY tools/edit_server_config.sh .
 RUN sh edit_server_config.sh
 
 COPY tools/create_wordpress_db.sql .
