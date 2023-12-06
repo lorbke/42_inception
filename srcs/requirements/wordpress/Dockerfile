@@ -18,11 +18,6 @@ RUN apk add --no-cache \
     php8-mbstring \
     curl
 
-RUN curl -o wordpress.tar.gz -fSL "https://wordpress.org/latest.tar.gz" \
-    && mkdir -p /var/www/html \
-    && tar -xzf wordpress.tar.gz -C /var/www/html/ \
-    && chown -R nobody:nobody /var/www/html/wordpress
-
 COPY tools/edit_www_conf.sh .
 
 COPY tools/init_wordpress.sh .
