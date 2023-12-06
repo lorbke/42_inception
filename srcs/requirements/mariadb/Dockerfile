@@ -12,8 +12,9 @@ COPY tools/edit_server_config.sh .
 RUN sh edit_server_config.sh
 
 COPY tools/start_create_db.sh .
+RUN chmod +x start_create_db.sh
 
 EXPOSE 3306
 
-ENTRYPOINT ["sh", "start_create_db.sh"]
+ENTRYPOINT ["/start_create_db.sh"]
 CMD ["mysqld", "-uroot"]

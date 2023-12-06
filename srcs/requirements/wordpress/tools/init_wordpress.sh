@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sleep 10
+sleep 2
 
 while ! nc -z mariadb 3306; do
   sleep 1

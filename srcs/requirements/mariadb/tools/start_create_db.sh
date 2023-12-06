@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 initialize_mariadb() {
 	mysqld -uroot &
@@ -6,7 +6,12 @@ initialize_mariadb() {
 		sleep 1
 	done
 
-	mysql -uroot -e "CREATE DATABASE ${WORDPRESS_DB}; CREATE USER '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}'; GRANT ALL PRIVILEGES ON ${WORDPRESS_DB}.* TO '${MYSQL_USER}'@'%';"
+	mysql -uroot -e " \
+	DELETE FROM     mysql.user WHERE User='';
+	DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1'); \
+	CREATE DATABASE ${WORDPRESS_DB}; \
+	CREATE USER '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}'; \
+	GRANT ALL PRIVILEGES ON ${WORDPRESS_DB}.* TO '${MYSQL_USER}'@'%';"
 	mysqladmin -uroot shutdown
 }
 

@@ -5,14 +5,12 @@
 - rename environment variables to make more generic
 - use environment variables where possible
     - wp-config.php
-- learn how to write create_wp_conf.sh, especially those if statements
 - execute just make (there was an error before)
-- styling missing on wordpress page
 - start docker process in makefile
-- fix php warnings when starting wordpress container
-- fix ugly 10 second sleep in init_wordpress.sh
-- add second user to wordpress db
+- make connection to lorbke.42.fr instead of localhost
 
+- fix ugly 10 second sleep in init_wordpress.sh
+- fix php warnings when starting wordpress container
 
 
 ====================MariaDB====================
