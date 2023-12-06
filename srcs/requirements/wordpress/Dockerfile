@@ -24,12 +24,9 @@ RUN curl -o wordpress.tar.gz -fSL "https://wordpress.org/latest.tar.gz" \
     && chown -R nobody:nobody /var/www/html/wordpress
 
 COPY tools/edit_www_conf.sh .
-RUN sh edit_www_conf.sh
-
-COPY conf/wp-config.php .
-RUN mv -f wp-config.php /var/www/html/wordpress/
 
 COPY tools/init_wordpress.sh .
+RUN chmod +x init_wordpress.sh
 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
     && chmod +x wp-cli.phar \
@@ -37,5 +34,5 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 
 EXPOSE 9000
 
-ENTRYPOINT ["sh", "init_wordpress.sh"]
+ENTRYPOINT ["/init_wordpress.sh"]
 CMD ["php-fpm8", "-F"]

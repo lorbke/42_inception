@@ -6,10 +6,10 @@ services:
     container_name: mariadb
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      WORDPRESS_DB: ${WORDPRESS_DB}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_ROOT: ${DB_ROOT}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
     ports:
       - "3306:3306"
     volumes:
@@ -24,9 +24,10 @@ services:
       - mariadb
     restart: always
     environment:
-      WORDPRESS_DB: ${WORDPRESS_DB}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      DB_HOST: ${DB_HOST}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
     ports:
       - "9000:9000"
     volumes:
