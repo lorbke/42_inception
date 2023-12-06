@@ -8,7 +8,9 @@
 - learn how to write create_wp_conf.sh, especially those if statements
 - execute just make (there was an error before)
 - styling missing on wordpress page
-- start docker in makefile
+- start docker process in makefile
+- fix php warnings when starting wordpress container
+- fix ugly 10 second sleep in init_wordpress.sh
 
 
 
