@@ -11,6 +11,7 @@
 - start docker process in makefile
 - fix php warnings when starting wordpress container
 - fix ugly 10 second sleep in init_wordpress.sh
+- add second user to wordpress db
 
 
 
