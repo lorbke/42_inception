@@ -26,8 +26,9 @@ RUN curl -o wordpress.tar.gz -fSL "https://wordpress.org/latest.tar.gz" \
 COPY tools/edit_www_conf.sh .
 RUN sh edit_www_conf.sh
 
-COPY conf/wp-config.php /var/www/html/wordpress
+COPY conf/wp-config.php .
+COPY tools/mv_start.sh .
 
 EXPOSE 9000
 
-CMD ["php-fpm8", "-F"]
+CMD ["sh", "mv_start.sh"]

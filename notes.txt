@@ -1,10 +1,14 @@
 ====================To Do====================
 - change volume device to /home/user/data
-- configure wordpress
-- setup mariadb database correctly with users and passwords
 - understand syntax of nginx.conf
 - add creation of certificates to makefile
+- rename environment variables to make more generic
 - use environment variables where possible
+    - wp-config.php
+- learn how to write create_wp_conf.sh, especially those if statements
+- execute just make (there was an error before)
+- styling missing on wordpress page
+- start docker in makefile
 
 
 
@@ -52,3 +56,5 @@
 - my SSL cert is not issued by a trusted CA and therefore produces a warning in Chrome
 - nginx runs on user "nginx" by default
 - docker exec -it [container name] bash (can be used to go into container during runtime)
+- nginx is essentially the middleware between clients and php/wordpress and is helping to balance the load etc.
+- COPY directive doesn't work on docker volumes, because file is COPYed first by dockerfile, then volume is mounted and whole folder structure is now routing to a different path

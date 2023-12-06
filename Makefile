@@ -7,6 +7,7 @@ all:
 clean:
 	@echo "Cleaning..."
 	@docker compose -f srcs/docker-compose.yml down
+	-@docker volume rm srcs_db_volume srcs_wp_volume
 
 build:
 	@echo "Building..."

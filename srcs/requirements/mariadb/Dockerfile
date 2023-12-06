@@ -11,9 +11,9 @@ RUN apk update \
 COPY tools/edit_server_config.sh .
 RUN sh edit_server_config.sh
 
-COPY tools/create_wordpress_db.sql .
-RUN mysqld --user=mysql --bootstrap < create_wordpress_db.sql
+COPY tools/start_create_db.sh .
 
 EXPOSE 3306
 
-CMD ["mysqld", "--user=mysql"]
+ENTRYPOINT ["sh", "start_create_db.sh"]
+CMD ["mysqld", "-uroot"]
