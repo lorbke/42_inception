@@ -14,7 +14,7 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
   wp core install --skip-email --url=$DOMAIN_NAME --title="WordPress Site" \
   --admin_user="master" --admin_password="master" \
   --admin_email="master@example.com" --path=/var/www/html/ --allow-root
-  wp user create "author" "author@example.com" --role=author --user_pass=$DB_PASSWORD \
+  wp user create "author" "author@example.com" --role=author --user_pass="author" \
   --path=/var/www/html/ --allow-root
 fi
 
