@@ -1,18 +1,27 @@
 NAME = inception
 
-all:
-	@echo "Compiling inception..."
-	@docker compose -f srcs/docker-compose.yml up
+all: data up
 
-clean:
+data:
+	@mkdir -p /home/$(USER)/data/wordpress
+	@mkdir -p /home/$(USER)/data/mariadb
+
+clean: down
 	@echo "Cleaning..."
-	@docker compose -f srcs/docker-compose.yml down
 	-@docker volume rm srcs_db_volume srcs_wp_volume
 
 build:
 	@echo "Building..."
 	@docker compose -f srcs/docker-compose.yml build
 
+up:
+	@echo "Starting..."
+	@docker compose -f srcs/docker-compose.yml up
+
+down:
+	@echo "Stopping..."
+	@docker compose -f srcs/docker-compose.yml down
+
 re: clean build all
 
-.PHONY: all clean build re
+.PHONY: all down up data clean build re

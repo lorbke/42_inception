@@ -51,7 +51,15 @@ services:
 
 volumes:
   db_volume:
+    driver_opts:
+      type: none
+      o: bind
+      device: "/home/lorbke/data/mariadb"
   wp_volume:
+    driver_opts:
+      type: none
+      o: bind
+      device: "/home/lorbke/data/wordpress"
 
 networks:
   inception:
