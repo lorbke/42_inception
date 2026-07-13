@@ -1,10 +1,11 @@
 NAME = inception
+VOLUME_PATH = /Users/luca/Coding/42_inception/data/
 
-all: data up
+all: create_vols up
 
-data:
-	@mkdir -p /home/$(USER)/data/wordpress
-	@mkdir -p /home/$(USER)/data/mariadb
+create_vols:
+	@mkdir -p ${VOLUME_PATH}/wordpress
+	@mkdir -p ${VOLUME_PATH}/mariadb
 
 clean: down
 	@echo "Cleaning..."

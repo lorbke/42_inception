@@ -15,7 +15,7 @@ initialize_mariadb() {
 	mysqladmin -uroot shutdown
 }
 
-if [ ! -d "/var/lib/mysql/DB_NAME" ]; then
+if [ ! -d "/var/lib/mysql/${DB_NAME}" ]; then
 	initialize_mariadb
 fi
 

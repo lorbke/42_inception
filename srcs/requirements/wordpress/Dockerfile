@@ -1,22 +1,26 @@
-FROM alpine:3.16
+FROM alpine:3.23
 
 RUN apk add --no-cache \
-    php8 \
-    php8-fpm \
-    php8-mysqli \
-    php8-json \
-    php8-openssl \
-    php8-curl \
-    php8-zlib \
-    php8-xml \
-    php8-phar \
-    php8-intl \
-    php8-dom \
-    php8-xmlreader \
-    php8-ctype \
-    php8-session \
-    php8-mbstring \
+    php83 \
+    php83-fpm \
+    php83-mysqli \
+    php83-json \
+    php83-openssl \
+    php83-curl \
+    php83-zlib \
+    php83-xml \
+    php83-phar \
+    php83-intl \
+    php83-dom \
+    php83-xmlreader \
+    php83-ctype \
+    php83-session \
+    php83-mbstring \
     curl
+
+# fixes for errors that came up with newer alpine version
+RUN ln -sf /usr/bin/php83 /usr/bin/php
+RUN sed -i 's/^memory_limit = .*/memory_limit = 512M/' /etc/php83/php.ini
 
 COPY tools/edit_www_conf.sh .
 
@@ -30,4 +34,4 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 EXPOSE 9000
 
 ENTRYPOINT ["/init_wordpress.sh"]
-CMD ["php-fpm8", "-F"]
+CMD ["php-fpm83", "-F"]
