@@ -20,4 +20,5 @@ if [ ! -d "/var/lib/mysql/${DB_NAME}" ]; then
 fi
 
 # executes whatever was passed as an argument, in this case the argument is passed by CMD directive in Dockerfile
+# exec makes sure current process (the script) is replaced with the process that starts when the command that was passed as arguments to the script is executed, as opposed to spawing a child process
 exec "$@"
