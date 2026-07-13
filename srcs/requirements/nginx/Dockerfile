@@ -14,4 +14,5 @@ RUN sh generate_ssl.sh \
 
 EXPOSE 443
 
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT [ "nginx" ]
+CMD ["-g", "daemon off;"]
