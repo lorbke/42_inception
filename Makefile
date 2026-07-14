@@ -11,6 +11,9 @@ clean: down
 	@echo "Cleaning..."
 	-@docker volume rm srcs_db_volume srcs_wp_volume
 
+fclean: clean
+	-@rm -rf data
+
 build:
 	@echo "Building..."
 	@docker compose -f srcs/docker-compose.yml build
@@ -23,6 +26,6 @@ down:
 	@echo "Stopping..."
 	@docker compose -f srcs/docker-compose.yml down
 
-re: clean build all
+re: fclean build all
 
-.PHONY: all down up data clean build re
+.PHONY: all down up data fclean clean build re
