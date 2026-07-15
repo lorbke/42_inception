@@ -56,6 +56,16 @@ services:
     networks:
       - inception
 
+  redis:
+    build: bonus/redis/
+    container_name: redis
+    depends_on:
+      - wordpress
+    restart: always
+    init: true
+    networks:
+      - inception
+
 volumes:
   db_volume:
     driver_opts:
