@@ -16,6 +16,7 @@ RUN apk add --no-cache \
     php83-ctype \
     php83-session \
     php83-mbstring \
+    php83-tokenizer \
     curl
 
 # fixes for errors that came up with newer alpine version
