@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>lorbke — Inception</title>
+  <meta name="description" content="A static site served from its own container, describing the infrastructure around it.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="masthead">
+    <p class="eyebrow">42 · System Administration</p>
+    <h1>Inception</h1>
+    <p class="lede">
+      A WordPress site rebuilt from nothing but Alpine, one service per container.
+      This page is served by a different container than the rest of it &mdash;
+      no PHP, no database, no framework.
+    </p>
+    <p class="byline">lorbke</p>
+  </header>
+
+  <main>
+
+    <section class="plate" aria-labelledby="stack-heading">
+      <h2 id="stack-heading">The stack</h2>
+
+      <div class="diagram">
+
+        <div class="tier tier-edge">
+          <div class="node node-you" aria-current="true">
+            <span class="tag">you are here</span>
+            <span class="svc">static</span>
+            <span class="detail">busybox httpd</span>
+          </div>
+          <div class="node">
+            <span class="svc">nginx</span>
+            <span class="detail">tls 1.2 / 1.3 · :443</span>
+          </div>
+        </div>
+
+        <div class="tier tier-app">
+          <div class="node">
+            <span class="svc">wordpress</span>
+            <span class="detail">php-fpm · :9000</span>
+          </div>
+        </div>
+
+        <div class="tier tier-data">
+          <div class="node">
+            <span class="svc">mariadb</span>
+            <span class="detail">:3306</span>
+          </div>
+          <div class="node">
+            <span class="svc">redis</span>
+            <span class="detail">object cache · :6379</span>
+          </div>
+          <div class="node">
+            <span class="svc">ftp</span>
+            <span class="detail">vsftpd · :21</span>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="note">
+        Only nginx is reachable from outside. Everything else answers to its
+        service name on an internal bridge network, and nothing else.
+      </p>
+    </section>
+
+    <section class="plate" aria-labelledby="notes-heading">
+      <h2 id="notes-heading">Notes</h2>
+      <dl class="specs">
+        <div>
+          <dt>Base</dt>
+          <dd>alpine 3.23, pinned. Every image built from a hand-written Dockerfile.</dd>
+        </div>
+        <div>
+          <dt>Persistence</dt>
+          <dd>Two named volumes, backed onto the host. The database and the site files outlive every container.</dd>
+        </div>
+        <div>
+          <dt>Processes</dt>
+          <dd>One service per container, running in the foreground. Setup happens in an entrypoint, which then hands the PID&nbsp;1 slot to the real process.</dd>
+        </div>
+        <div>
+          <dt>This page</dt>
+          <dd>Static HTML on busybox httpd. It shares nothing with the WordPress stack but the network.</dd>
+        </div>
+      </dl>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Built for the 42 curriculum. Certificate is self-signed &mdash; that part is on purpose.</p>
+  </footer>
+
+</body>
+</html>

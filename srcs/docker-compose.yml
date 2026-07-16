@@ -34,7 +34,7 @@ services:
       WP_USER_PASSWORD: ${WP_USER_PASSWORD}
       WP_USER_EMAIL: ${WP_USER_EMAIL}
     volumes:
-      - wp_volume:/var/www/
+      - wp_volume:/var/www/html
     networks:
       - inception
 
@@ -48,7 +48,7 @@ services:
     ports:
       - "443:443"
     volumes:
-      - wp_volume:/var/www/
+      - wp_volume:/var/www/html
     networks:
       - inception
 
@@ -79,6 +79,14 @@ services:
       - wp_volume:/var/www/html
     networks:
       - inception
+
+  website:
+    build: bonus/website/
+    container_name: website
+    restart: always
+    init: true
+    ports:
+      - "3000:3000"
 
 volumes:
   db_volume:
