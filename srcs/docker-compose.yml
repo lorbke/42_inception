@@ -9,8 +9,6 @@ services:
       DB_ROOT: ${DB_ROOT}
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
-    ports:
-      - "3306:3306"
     volumes:
       - db_volume:/var/lib/mysql/
     networks:
@@ -35,8 +33,6 @@ services:
       WP_USER: ${WP_USER}
       WP_USER_PASSWORD: ${WP_USER_PASSWORD}
       WP_USER_EMAIL: ${WP_USER_EMAIL}
-    ports:
-      - "9000:9000"
     volumes:
       - wp_volume:/var/www/
     networks:
