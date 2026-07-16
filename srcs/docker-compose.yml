@@ -66,6 +66,24 @@ services:
     networks:
       - inception
 
+  ftp:
+    build: bonus/ftp/
+    container_name: ftp
+    depends_on:
+      - wordpress
+    restart: always
+    init: true
+    environment:
+      FTP_USER: ${FTP_USER}
+      FTP_PASSWORD: ${FTP_PASSWORD}
+    ports:
+      - "21:21"
+      - "21100-21110:21100-21110"
+    volumes:
+      - wp_volume:/var/www/html
+    networks:
+      - inception
+
 volumes:
   db_volume:
     driver_opts:
