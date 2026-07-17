@@ -56,7 +56,7 @@ services:
       - inception
 
   redis:
-    build: bonus/redis/
+    build: requirements/bonus/redis/
     image: redis
     container_name: redis
     depends_on:
@@ -67,7 +67,7 @@ services:
       - inception
 
   ftp:
-    build: bonus/ftp/
+    build: requirements/bonus/ftp/
     image: ftp
     container_name: ftp
     depends_on:
@@ -86,7 +86,7 @@ services:
       - inception
 
   website:
-    build: bonus/website/
+    build: requirements/bonus/website/
     image: website
     container_name: website
     restart: always
@@ -95,7 +95,7 @@ services:
       - "3000:3000"
 
   adminer:
-    build: bonus/adminer/
+    build: requirements/bonus/adminer/
     image: adminer
     container_name: adminer
     depends_on:
@@ -108,7 +108,7 @@ services:
       - inception
 
   glances:
-    build: bonus/glances/
+    build: requirements/bonus/glances/
     image: glances
     container_name: glances
     restart: always
