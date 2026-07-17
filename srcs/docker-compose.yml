@@ -88,6 +88,18 @@ services:
     ports:
       - "3000:3000"
 
+  adminer:
+    build: bonus/adminer/
+    container_name: adminer
+    depends_on:
+      - mariadb
+    restart: always
+    init: true
+    ports:
+      - "8080:8080"
+    networks:
+      - inception
+
 volumes:
   db_volume:
     driver_opts:
