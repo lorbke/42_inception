@@ -1,6 +1,7 @@
 services:
   mariadb:
     build: requirements/mariadb/
+    image: mariadb
     container_name: mariadb
     restart: always
     init: true #adds tini as PID 1
@@ -16,6 +17,7 @@ services:
 
   wordpress:
     build: requirements/wordpress/
+    image: wordpress
     container_name: wordpress
     depends_on:
       - mariadb
@@ -40,6 +42,7 @@ services:
 
   nginx:
     build: requirements/nginx/
+    image: nginx
     container_name: nginx
     depends_on:
       - wordpress
@@ -54,6 +57,7 @@ services:
 
   redis:
     build: bonus/redis/
+    image: redis
     container_name: redis
     depends_on:
       - wordpress
@@ -64,6 +68,7 @@ services:
 
   ftp:
     build: bonus/ftp/
+    image: ftp
     container_name: ftp
     depends_on:
       - wordpress
@@ -82,6 +87,7 @@ services:
 
   website:
     build: bonus/website/
+    image: website
     container_name: website
     restart: always
     init: true
@@ -90,6 +96,7 @@ services:
 
   adminer:
     build: bonus/adminer/
+    image: adminer
     container_name: adminer
     depends_on:
       - mariadb
@@ -97,6 +104,19 @@ services:
     init: true
     ports:
       - "8080:8080"
+    networks:
+      - inception
+
+  glances:
+    build: bonus/glances/
+    image: glances
+    container_name: glances
+    restart: always
+    init: true
+    ports:
+      - "61208:61208"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - inception
 
