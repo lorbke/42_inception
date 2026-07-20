@@ -18,9 +18,9 @@ build:
 	@echo "Building..."
 	@docker compose -f srcs/docker-compose.yml build
 
-up:
+up: create_vols
 	@echo "Starting..."
-	@docker compose -f srcs/docker-compose.yml up
+	@docker compose -f srcs/docker-compose.yml up -d --build
 
 down:
 	@echo "Stopping..."
